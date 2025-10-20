@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      serviceAccountName: task-runner-sa # Use the service account
+      containers:
+      - name: backend
+        image: harishkrishnamurali/task-runner-backend:latest # <-- UPDATE THIS
+        ports:
+        - containerPort: 9090
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo-service:27017" # Connects to the Mongo service
+        - name: MONGO_DB_NAME
+          value: "taskdb"

@@ -1,0 +1,14 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: taskrunner
+  # Get Mongo details from environment variables
+  data:
+    mongodb:
+      uri: ${MONGO_URI}
+      database: ${MONGO_DB_NAME}
+  # Activate the k8s profile to use the K8sJobExecutorService
+  profiles:
+    active: k8s

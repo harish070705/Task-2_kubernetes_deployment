@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  type: NodePort # <-- Change back to NodePort
+  selector:
+    app: backend
+  ports:
+  - port: 9090
+    targetPort: 9090
+    # Optional: You can specify a NodePort here, e.g., nodePort: 32003
+    # If you don't specify, Kubernetes assigns a random one.
